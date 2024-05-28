@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-t85ojesbszrra5=1m98sex5kx%4avpzpw#^q_^57hk0%e0itf%
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = os.environ.get('DEBUG','False').lower() == 'true'
 DEBUG = True
-ALLOWED_HOSTS = ['gymrender.onrender.com','localhost','127.0.0.1']
-#ALLOWED_HOSTS=['*']
+# ALLOWED_HOSTS = ['gymrender.onrender.com','localhost','127.0.0.1']
+ALLOWED_HOSTS=['*']
 
 
 
@@ -85,10 +85,7 @@ WSGI_APPLICATION = 'gym.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse('postgres://ohrmsdb_user:ZYaRnm6P0TcliugWglmy32DzGUemZmhj@dpg-cnnd44fjbltc738dquvg-a.oregon-postgres.render.com/end_to_end_db')
 }
 
 
