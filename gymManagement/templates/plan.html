@@ -1,0 +1,70 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+  <main id="main" class="main">
+    <a href="{% url 'home' %}">Home</a> / Plans
+    <div class="pagetitle">
+      <h1>Plan</h1>
+      
+    </div><!-- End Page Title -->
+    {% for message in messages %}
+      
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  
+
+    {% endfor %}
+    <section class="section">
+
+      <div class="row">
+        <div class="col-12">
+      <div class="card overflow-auto">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+         
+        
+          <table class="table datatable">
+            <thead>
+            
+              <tr>
+                <th scope="col">Plan Type</th>
+          
+                <th scope="col">Price</th>
+                <th scope="col">No. of Registerd</th>
+                <th scope="col">Up Date</th>
+                <th scope="col">Disable</th>
+                
+              </tr>
+            </thead>
+            <tbody> 
+               {% for plan in plans %}
+              <tr>
+                <th>{{plan.title}}</th>
+               
+                <td>{{plan.price}} ETB</td>
+                <td>{{plan.createdAt}}</td>
+                <td><a href="{% url 'updatePlan' id=plan.pk %}"><button class="btn btn-warning"><i class="bx bx-reset"></i></button></td></a>
+                <td><button class="btn btn-danger"><i class="bi bi-key"></i></button></td>
+              </tr>
+              {% endfor %}
+             
+              
+            </tbody>
+          </table>
+      
+        </div>
+      </div>
+<div class="text-end">
+    <a href="{% url 'registerPlan' %}" class="btn btn-primary">Add New Plan</a>
+</div>
+
+    </div>  
+    </div>
+    </section>
+
+  </main><!-- End #main -->
+{% endblock %}

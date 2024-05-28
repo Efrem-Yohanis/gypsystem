@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+  <main id="main" class="main">
+    <a href="{% url 'home' %}">Home</a> / Attendance
+    <div class="pagetitle">
+      <h1>Attendance</h1>
+      
+    </div><!-- End Page Title -->
+
+    <section class="section">
+
+      <div class="row">
+        <div class="col-12">
+      <div class="card overflow-auto">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+         
+        
+          <table class="table datatable">
+            <thead>
+              <tr>
+                
+                <th scope="col">Full Name</th>
+                <th scope="col">Plan Type</th>
+                <th scope="col">Entry Time</th>
+                <th scope="col">Remind Date</th>
+                <th scope="col">Expired Date</th>
+                <th scope="col">Attendance</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {% for attendance in todayAttendance%}
+              <tr>
+                <td>{{attendance.gymMember.firstName}} {{attendance.gymMember.lastName}}</td>
+                <td>{{attendance.gymMember.plan}}</td>
+                <td>{{attendance.workoutTime}}</td>
+                <td>28</td>
+                <td>{{attendance.gymMember.joinedAt}}</td>
+                <td><button class="btn btn-success" disabled><i class="bi bi-check-circle"></i></button></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      
+        </div>
+      </div>
+    </div>  
+    </div>
+    </section>
+
+  </main><!-- End #main -->
+{% endblock %}

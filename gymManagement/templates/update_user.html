@@ -1,0 +1,120 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+  <main id="main" class="main">
+    <a href="{% url 'home' %}">Home</a> / <a href="{% url 'manageMembers' %}">ManageMembers</a> / UpdateMember
+    
+    <div class="pagetitle">
+      <h1>Update Member</h1>
+      
+    </div><!-- End Page Title -->
+
+    <section class="section mt-4">
+      {% for message in messages %}
+      
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    
+  
+      {% endfor %}
+      <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+    
+                  <!-- General Form Elements -->
+                  <form action="{% url 'updateMember' id=gymMember.pk %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                      <label for="inputText" class="col-sm-2 col-form-label">First Name</label>
+                      <div class="col-sm-12">
+                        <input type="text" class="form-control" name="firstName" value="{{gymMember.firstName}}" required>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-12">
+                          <input type="text" class="form-control" name="lastName" value="{{gymMember.lastName}}" required>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label" >Email</label>
+                        <div class="col-sm-12">
+                          <input type="email" class="form-control" name="email" value="{{gymMember.email}}" required>
+                        </div>
+                      </div>
+                    <div class="row mb-3">
+                      <label for="inputNumber" class="col-sm-2 col-form-label">Phone</label>
+                      <div class="col-sm-12">
+                        <input type="tel" class="form-control" name="phone" value="{{gymMember.phone}}" required >
+                      </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <label for="inputNumber" class="col-sm-2 col-form-label" >Gender</label>
+                       <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Male">
+                          <label class="form-check-label" for="gridRadios2">
+                            Male
+                          </label>
+                        </div>
+                     
+
+                        <div class="form-check disabled">
+                          <input class="form-check-input" type="radio" name="gender" id="gridRadios" value="Female">
+                          <label class="form-check-label" for="gridRadios3">
+                            Female
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="fileInput" class="col-sm-2 col-form-label">Photo</label>
+                        <div class="col-sm-12">
+                          <input type="file" class="form-control" name="photo" id="fileInput" disabled>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3" >
+                        <label class="col-sm-2 col-form-label">Plan</label>
+                        <div class="col-sm-12">
+                          <select class="form-select" aria-label="Default select example" name="plan" disabled>
+                         
+                            <option value="{{gymMember.plan.pk}}" >{{gymMember.plan}}ETB</option>
+                          
+                          </select>
+                        </div>
+                      </div>
+                    
+                      <!-- <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Price</label>
+                        <div class="col-sm-12">
+                          <input type="text" class="form-control" disabled>
+                        </div>
+                      </div> -->
+
+                    <div class="row mb-3">
+                     
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                      </div>
+                    </div>
+    
+                  </form><!-- End General Form Elements -->
+    
+                </div>
+              </div>
+
+
+
+    </div>  
+    </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+  <main id="main" class="main">
+    <a href="{% url 'home' %}">Home</a>  /
+    {% for message in messages %}
+      
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  
+
+    {% endfor %}
+    <div class="pagetitle">
+      <h1>Manage Members</h1>
+      
+    </div><!-- End Page Title -->
+
+    <section class="section">
+
+      <div class="row">
+        <div class="col-12 ">
+      <div class="card overflow-auto">
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th scope="col">Member ID</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Plan Type</th>
+                <th scope="col">Paid Date</th>
+                <th scope="col">Expired Date</th>
+                <th scope="col">Remind Date</th>
+                <th scope="col">View</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for gymMember in gymMembers %}
+              <tr>
+                <th scope="row">#{{gymMember.pk}}</th>
+                <td>{{gymMember.firstName}} {{gymMember.lastName}}</td>
+                <td>{{gymMember.plan}}</td>
+                <td>{{gymMember.paidAt}}</td>
+                <td>{{gymMember.expireDate}}</td>
+                <td>28</td>
+                <td><a href="{% url 'gymMemberProfile' id=gymMember.pk %}" class="btn btn-info"><i class="bi bi-eye"></i></a></td>
+                <td><a href="{% url 'updateMember' id=gymMember.pk %}" class="btn btn-warning"><i class="bx bx-reset"></i></a></td>
+                <td><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+                
+              </tr>{% endfor %}
+
+              
+              
+            </tbody>
+          </table>
+      
+        </div>
+      </div>
+    </div>  
+    </div>
+    </section>
+
+  </main><!-- End #main -->
+{% endblock %}
+

@@ -1,0 +1,103 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load qr_code %}
+{% block content %}
+
+
+  <main id="main" class="main">
+
+    <a href="{% url 'home' %}">Home</a> / GenerateID
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+            
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Generate ID Card</h5>
+
+              <!-- General Form Elements -->
+              <form action="{% url 'generateIdCard' %}" method="POST">
+                {% csrf_token %}
+                <div class="row mb-3">
+                  
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Enter ID" name="id">
+                  </div>
+                </div>
+              
+               <div class="row mb-3">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Search Memeber</button>
+                  </div>
+                </div>
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+          </div>
+          {% for message in messages %}
+      
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  {{message}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            
+          
+              {% endfor %}
+              {% if gymMember %}
+    
+              <div class="col-sm-12 col-lg-3">
+                <div class="gym-card">
+                
+                <div class="gym-card-header">
+                  <h5 class="gym-card-title">Yene Gym</h5>
+                </div>
+                <div class="gym-card-body">
+                  <div class="gym-card-profile">
+                    <img src="{{ gymMember.photo.url }}" alt="Profile" class="gym-card-profile-img">
+                    <div class="gym-card-profile-info">
+                      <p class="gym-card-profile-name">{{ gymMember.firstName }} {{ gymMember.lastName }}</p>
+                      <p class="gym-card-profile-id"><strong>Member ID: </strong>{{ gymMember.pk }}</p>
+                      
+                      <p class="gym-card-profile-phone"><strong>Phone No.</strong>{{ gymMember.phone }} </p>
+                     
+                      <p class="gym-card-profile-join"><strong>Join Date:</strong>{{ gymMember.joinedAt }}</p>
+                  
+                    
+                    </div>
+                  </div>
+                  <div class="gym-card-qr">
+                    <img src="data:image/png;base64,{{ qr_code_image }}" alt="QR Code" class="gym-card-qr-img">
+                   
+                    
+                  </div>
+                  <div class="gym-card-pro">
+                    &copy; Copyright <strong><span>Yene Technologies Plc</span></strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <button onclick="downloadGymCard()" class="gym-card-download">Download Card</button>
+        </div>
+    
+  </div>
+{% endif %}
+          </div>
+             <!-- Card with an image on left -->
+
+          </div>
+        </div><!-- End Left side columns -->
+
+      
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+{% endblock %}
