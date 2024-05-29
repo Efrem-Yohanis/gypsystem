@@ -19,7 +19,7 @@
                 const idRegex = /ID:\s*#\s*(\d+)/;
                 const match = decodeText.match(idRegex);
                const id = match[1];
-                if (confirm(`QR code content: ${id}. Do you want to proceed?`)) {
+                if (confirm(`${decodeText}. \n\nDo you want to proceed?`)) {
                     // User confirmed, do something with the decodeText
                     window.location.replace(`https://gypsystem.onrender.com/qrScanner/${id}`)
 
